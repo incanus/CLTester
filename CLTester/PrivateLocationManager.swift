@@ -13,7 +13,7 @@ class PrivateLocationManager: NSObject, CLLocationManagerDelegate {
         println("Mapbox CL is \(locationManager)")
         let backgroundModes = NSBundle.mainBundle().objectForInfoDictionaryKey("UIBackgroundModes") as? NSArray
         println("Background modes for app? \(backgroundModes!)")
-
+        // note that we don't actually request auth anyplace
     }
 
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
