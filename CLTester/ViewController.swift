@@ -23,6 +23,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         println("Third-party: CL \(manager) changed auth status to \"\(Utility.descriptionForAuthStatus(status))\"")
         println("Third-party: CL \(manager) has desired accuracy of \(manager.desiredAccuracy)")
+        if (status == .AuthorizedAlways || status == .AuthorizedWhenInUse) {
+            manager.startUpdatingLocation()
+        }
+    }
+
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        println("Third-party: CL got some locations: \(locations)")
     }
 
 }

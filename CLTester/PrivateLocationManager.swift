@@ -19,6 +19,14 @@ class PrivateLocationManager: NSObject, CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         println("Mapbox: CL \(manager) changed auth status to \"\(Utility.descriptionForAuthStatus(status))\"")
         println("Mapbox: CL \(manager) has desired accuracy of \(manager.desiredAccuracy)")
+        if (status == .AuthorizedAlways || status == .AuthorizedWhenInUse) {
+            // note that we still haven't authed ourselves
+            manager.startUpdatingLocation()
+        }
+    }
+
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        println("Mapbox: CL got some locations: \(locations)")
     }
 
 }
